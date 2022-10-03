@@ -1,4 +1,3 @@
-import React from "react";
 
 // 1. this page should contain two input boxes which takes email and password from the user and a login button.
 
@@ -12,8 +11,22 @@ import React from "react";
 
 // 6. Proper Alert should be displayed to user upon unsuccessful API call. the message can be `Something went wrong. please refresh.`
 
+import React,{useContext}from "react";
+import { AuthContext } from "../Context/AuthContext/AuthContextProvider";
+import { Navigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
+
 const Login = () => {
-  return <div>Login</div>;
+  const {isAuth}=useContext(AuthContext)
+  if(isAuth){
+    return <Navigate to="/"/>
+  }
+  return (
+  <div style={{width:"80%",margin:"auto"}}>
+    <h1 style={{fontSize:"28px", fontWeight:"bold"}}>Login Form</h1>
+    <LoginForm/>
+  </div>
+  )
 };
 
 export default Login;
